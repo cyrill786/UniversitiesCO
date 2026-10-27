@@ -70,7 +70,7 @@ fun MainSreen(modifier: Modifier = Modifier){
             items(items = university) {
                     university ->
                 Text(
-                    text = "${University.} ${post.body}",
+                    text = "${university.name} ${university.alpha_two_code}",
                     modifier = Modifier.padding(vertical = 8.dp)
                 )
                 HorizontalDivider()
