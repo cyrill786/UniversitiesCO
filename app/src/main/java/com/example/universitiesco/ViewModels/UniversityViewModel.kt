@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 class UniversityViewModel : ViewModel() {
     val university = MutableStateFlow<List<University>>(emptyList())
 
-    fun loadPosts() {
+    fun loadUniversity() {
         viewModelScope.launch {
             try {
                 university.value = ApiClient.apiService.getUniversity()
