@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -21,6 +22,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -51,31 +53,42 @@ fun MainSreen(modifier: Modifier = Modifier){
     var name by remember { mutableStateOf("") }
 
     Column(
-        modifier = modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize().padding(18.dp)
     ) {
         OutlinedTextField(
+            modifier = Modifier.fillMaxWidth(),
             value = name,
-            onValueChange = {name = it}
+            onValueChange = {name = it},
+            placeholder = { Text(text = "University") }
         )
         Button(
             onClick = {
-                viewModel.loadUniversity()
-            }
+                viewModel.loadUniversity(name)
+            },
+            modifier.fillMaxWidth()
         ) {
-            Text(text = "Load")
+            Text(text = "Search")
         }
         LazyColumn(
 
         ) {
             items(items = university) {
                     university ->
-                Text(
-                    text = "${university.name} ${university.alpha_two_code}",
+                Column(
                     modifier = Modifier.padding(vertical = 8.dp)
-                )
+                ) {
+                    Text(
+                        text = "${university.name}",
+                        fontWeight = FontWeight.Bold
+                    )
+                    Text(
+                        text = "${university.country}"
+                    )
+                }
+
                 HorizontalDivider()
             }
         }
     }
 }
-}
+

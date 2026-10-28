@@ -8,7 +8,7 @@ import kotlin.getValue
 import kotlin.jvm.java
 
 object ApiClient {
-    private const val BASE_URL = "http://universities.hipolabs.com/search?name=middle"
+    private const val BASE_URL = "http://universities.hipolabs.com/" // search?name=middle
 
     private val retrofit by lazy {
         val json = Json { ignoreUnknownKeys = true }

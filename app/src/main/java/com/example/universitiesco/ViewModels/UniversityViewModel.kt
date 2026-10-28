@@ -11,10 +11,10 @@ import kotlinx.coroutines.launch
 class UniversityViewModel : ViewModel() {
     val university = MutableStateFlow<List<University>>(emptyList())
 
-    fun loadUniversity() {
+    fun loadUniversity(name: String) {
         viewModelScope.launch {
             try {
-                university.value = ApiClient.apiService.getUniversity()
+                university.value = ApiClient.apiService.getUniversity(name)
             } catch (e: Exception) {
                 Log.e("PostVM", "Erreur: ${e.message}")
             }
